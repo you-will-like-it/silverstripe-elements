@@ -1,0 +1,49 @@
+---
+Name: youwilllikeit-elements
+After:
+  - '#elementalpageextension'
+---
+# No styles from Elemental: the project theme owns all markup and CSS.
+DNADesign\Elemental\Controllers\ElementController:
+  include_default_styles: false
+
+# SectionStyleExtension is opt-in. Enable it in the project, e.g.:
+# DNADesign\Elemental\Models\BaseElement:
+#   extensions:
+#     - YouWillLikeIT\Elements\Extensions\SectionStyleExtension
+
+---
+Name: youwilllikeit-elements-fluent
+After:
+  - '#youwilllikeit-elements'
+Only:
+  moduleexists: 'tractorcow/silverstripe-fluent'
+---
+# Item models only. BaseElement and LinkField's Link are configured by the project (see README),
+# because Fluent must be applied to base classes exactly once.
+YouWillLikeIT\Elements\Models\FeatureItem:
+  extensions:
+    - TractorCow\Fluent\Extension\FluentVersionedExtension
+YouWillLikeIT\Elements\Models\FaqItem:
+  extensions:
+    - TractorCow\Fluent\Extension\FluentVersionedExtension
+YouWillLikeIT\Elements\Models\TestimonialItem:
+  extensions:
+    - TractorCow\Fluent\Extension\FluentVersionedExtension
+YouWillLikeIT\Elements\Models\TeamMember:
+  extensions:
+    - TractorCow\Fluent\Extension\FluentVersionedExtension
+YouWillLikeIT\Elements\Models\LogoItem:
+  extensions:
+    - TractorCow\Fluent\Extension\FluentVersionedExtension
+
+---
+Name: youwilllikeit-elements-schema
+After:
+  - '#youwilllikeit-elements'
+Only:
+  moduleexists: 'dorsetdigital/silverstripe-schema-manager'
+---
+SilverStripe\CMS\Model\SiteTree:
+  extensions:
+    - YouWillLikeIT\Elements\Schema\ElementalSchemaExtension

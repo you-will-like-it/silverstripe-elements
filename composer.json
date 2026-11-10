@@ -1,0 +1,39 @@
+{
+    "name": "youwilllikeit/silverstripe-elements",
+    "description": "Basic, layout-free content blocks for silverstripe/elemental 6 (Hero, TextMedia, FeatureGrid, CallToAction, FAQ, Testimonials, Team, LogoWall, Gallery). Projects add fields via extensions and own all markup and styles.",
+    "type": "silverstripe-vendormodule",
+    "license": "proprietary",
+    "keywords": [
+        "silverstripe",
+        "elemental",
+        "blocks",
+        "fluent",
+        "schema"
+    ],
+    "require": {
+        "php": "^8.3",
+        "silverstripe/framework": "^6.1",
+        "silverstripe/cms": "^6.1",
+        "dnadesign/silverstripe-elemental": "^6.2",
+        "silverstripe/linkfield": "^5.2",
+        "symbiote/silverstripe-gridfieldextensions": "^5.2",
+        "bummzack/sortablefile": "^3.0"
+    },
+    "suggest": {
+        "tractorcow/silverstripe-fluent": "Localise elements, items and links (^8.2)",
+        "dorsetdigital/silverstripe-schema-manager": "FAQPage, ImageGallery, Person and Review entities from elements (^2.2)",
+        "unclecheese/display-logic": "Show the background image field only for Background = image in SectionStyleExtension (^4.0)"
+    },
+    "autoload": {
+        "psr-4": {
+            "YouWillLikeIT\\Elements\\": "src/"
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-main": "2.x-dev"
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
