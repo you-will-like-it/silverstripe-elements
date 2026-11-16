@@ -1,5 +1,12 @@
 # Changelog
 
+## 2.0.1 — 2026-11-16
+
+### Fixed
+- `ElementBase` is no longer `abstract`. `dev/build` failed with "Cannot instantiate abstract class" because the ORM's
+  `TableBuilder` instantiates every DataObject class (Elemental's block-type list uses `singleton()` as well).
+  The base class now returns `false` from `canCreate()`, so it still never appears as a block type.
+
 ## 2.0.0 — 2026-11-10
 
 First release as a standalone repository. It is a breaking change compared to 1.0.0, which was embedded in

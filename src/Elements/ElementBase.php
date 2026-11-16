@@ -25,10 +25,14 @@ use Symbiote\GridFieldExtensions\GridFieldOrderableRows;
  * The module ships no layout. Projects add fields with an Extension on the concrete element class
  * and override the element template in their theme (see docs/extending.md).
  *
+ * Not declared abstract on purpose: the ORM builds tables by instantiating every DataObject class
+ * (TableBuilder) and Elemental lists block types via singleton(), so an abstract class is a fatal error
+ * on dev/build. The base class itself can't be created (canCreate) and so never shows up as a block type.
+ *
  * @property string $HeadingLevel
  * @method HasManyList<Link> CTALinks()
  */
-abstract class ElementBase extends BaseElement
+class ElementBase extends BaseElement
 {
     private static string $table_name = 'YWLI_ElementBase';
 
@@ -68,6 +72,21 @@ abstract class ElementBase extends BaseElement
     private static array $heading_levels = ['h2', 'h3'];
 
     private static bool $inline_editable = false;
+
+    /**
+     * The shared base is not a block type of its own.
+     *
+     * @param mixed $member
+     * @param array<string, mixed> $context
+     */
+    public function canCreate($member = null, $context = [])
+    {
+        if (static::class === self::class) {
+            return false;
+        }
+
+        return parent::canCreate($member, $context);
+    }
 
     public function fieldLabels($includerelations = true): array
     {
